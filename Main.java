@@ -31,5 +31,10 @@ public class Main {
                 ", Salary: " + employee.getSalary() + ")");
             employee.work();
         }
+
+        Worker duplicateIDWorker = new Worker("Duplikat", 5364, 2, "2023-02-11", "super x2 programista");
+        System.out.println(worker4.getName() + " rowny worker2: " + worker4.equals(worker2));
+        System.out.println(worker4.getName() + " rowny manager: " + worker4.equals(manager));
+        System.out.println(worker4.getName() + " rowny duplicateIDWorker: " + worker4.equals(duplicateIDWorker));
     }
 }
