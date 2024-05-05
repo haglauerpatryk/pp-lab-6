@@ -23,13 +23,7 @@ public class Main {
         employees.add(manager);
 
         for (Employee employee : employees) {
-            System.out.println(
-                "- " + employee.getName() + 
-                " (ID: " + employee.getId() + 
-                ", Position: " + employee.getPosition() + 
-                ", Hire date: " + employee.getHireDate() + 
-                ", Salary: " + employee.getSalary() + ")");
-            employee.work();
+            System.out.println("- " + employee.getName() + " has code: " + employee.hashCode());
         }
 
         Worker duplicateIDWorker = new Worker("Duplikat", 5364, 2, "2023-02-11", "super x2 programista");
