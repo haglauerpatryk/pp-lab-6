@@ -13,28 +13,53 @@ public class Main {
         Worker worker2 = new Worker("Kasia", 3241, 2, "3.12.2000", "programista");
         Worker worker3 = new Worker("Basia", 4231, 3, "11.8.2012", "super programista");
         Worker worker4 = new Worker("Tosia", 3412, 4, "6.11.2012", "troche bardziej programista");
+        Worker worker5 = new Worker("Zosia", 4321, 5, "12.6.2012", "programista");
+        Worker worker6 = new Worker("Krysia", 5432, 6, "12.6.2012", "programista");
 
-        Manager manager = new Manager("Tomek", 6543, 5, "12.6.2012", "szeryf");
+        Manager manager1 = new Manager("Tomek", 6543, 5, "12.6.2012", "szeryf");
+        Manager manager2 = new Manager("Krzysiek", 7654, 6, "12.6.2012", "szeryf");
+        Manager manager3 = new Manager("Kuba", 8765, 7, "12.6.2012", "szeryf");
 
         employees.add(worker1);
         employees.add(worker2);
         employees.add(worker3);
         employees.add(worker4);
-        employees.add(manager);
+        employees.add(worker5);
+        employees.add(worker6);
+        employees.add(manager1);
+        employees.add(manager2);
+        employees.add(manager3);
+
+        double totalSalary = 0;
+        double totalManagerSalary = 0;
+        double totalWorkerSalary = 0;
 
         for (Employee employee : employees) {
-            System.out.println(
-                "- " + employee.getName() + 
-                " (ID: " + employee.getId() + 
-                ", Position: " + employee.getPosition() + 
-                ", Hire date: " + employee.getHireDate() + 
-                ", Salary: " + employee.getSalary() + ")");
-            employee.work();
+            totalSalary += employee.getSalary();
+            if (employee instanceof Manager) {
+                totalManagerSalary += employee.getSalary();
+            } else if (employee instanceof Worker) {
+                totalWorkerSalary += employee.getSalary();
+            }
         }
 
-        Worker duplicateIDWorker = new Worker("Duplikat", 5364, 2, "2023-02-11", "super x2 programista");
-        System.out.println(worker4.getName() + " rowny worker2: " + worker4.equals(worker2));
-        System.out.println(worker4.getName() + " rowny manager: " + worker4.equals(manager));
-        System.out.println(worker4.getName() + " rowny duplicateIDWorker: " + worker4.equals(duplicateIDWorker));
+        System.out.println("Totalne zarobki przez wszystkich zatrudnionych: " + totalSalary);
+        System.out.println("Totalne zarobki przez wszystkich managerow: " + totalManagerSalary);
+        System.out.println("Totalne zarobki przez wszystkich pracownikow: " + totalWorkerSalary);
+
+        for (Employee employee : employees) {
+            List<Employee> matchingEmployees = new ArrayList<>();
+            for (Employee otherEmployee : employees) {
+                if (employee.equals(otherEmployee)) {
+                    matchingEmployees.add(otherEmployee);
+                }
+            }
+            if (matchingEmployees.size() > 1) {
+                System.out.println("Pracownicy z ID " + employee.getId() + ": ");
+                for (Employee matchingEmployee : matchingEmployees) {
+                    System.out.println("- " + matchingEmployee.getName() + " (Pozycja: " + matchingEmployee.getPosition() + ")");
+                }
+            }
+        }
     }
 }
